@@ -1,13 +1,15 @@
 import React from 'react'
+import { Link, useRouteMatch } from 'react-router-dom'
 
 function Header(props) {
-    const pages = ["home", "menu", "contact"]
+    const { pages } = props
+
     return (
         <nav>
             { pages.map(page => (
-                <button onClick={ () => props.changePage(page) } key={ pages.indexOf(page) }>
-                    {page.toUpperCase()}
-                </button>
+                    <Link to={`/${page}`} key={ pages.indexOf(page) } style={{marginRight: "20px"}}>
+                        {page.toUpperCase()}
+                    </Link>
                 )
             )}
         </nav>

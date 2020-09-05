@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Switch, Route } from 'react-router-dom'
 
 import Header from './Header'
 import Home from './Home'
@@ -10,16 +11,22 @@ function App() {
 
     const changePage = (newPage) => setActivePage(newPage)
 
+    const pages = ["home", "menu", "contact"]
+
     return (
         <>
-            <Header changePage={changePage} />
-            {
-                activePage === "home"
-                ? <Home />
-                : activePage === "menu"
-                ? <Menu />
-                : <Contact />
-            }
+            <Header pages={pages} changePage={changePage} />
+            <Switch>
+                <Route path="/menu">
+                    <Menu />
+                </Route>
+                <Route path="/contact">
+                    <Contact />
+                </Route>
+                <Route path="/">
+                    <Home />
+                </Route>
+            </Switch>
         </>
     )
 }
